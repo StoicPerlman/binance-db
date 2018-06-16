@@ -35,12 +35,17 @@ class Candle(Base):
         self.trades = kline[rest.TRADES]
         self.tbbav = float(kline[rest.TBBAV])
         self.tbqav = float(kline[rest.TBQAV])
-    
+
+    def __eq__(self, other):
+        if other == None:
+            return False
+        return self.pair == other.pair and self.close_time == other.close_time
+
     def __repr__(self):
         date = self.open_time.strftime('%Y-%m-%d %H:%M:%S')
         return "<Candle(pair={}, open_time={}, open={}, close={})>".format(
                 self.pair, date, self.open_price, self.close_price)
-    
+
     @staticmethod
     def to_date(timestamp):
         return datetime.utcfromtimestamp(timestamp / 1000)
