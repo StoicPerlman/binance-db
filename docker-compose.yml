@@ -1,0 +1,17 @@
+version: '3'
+services:
+  binance-db:
+    image: stoicperlman/binance-db
+    build:
+      context: .
+    restart: always
+    environment:
+      BDB_POSTGRESS_URL: postgress
+      BDB_POSTGRESS_USER: binancedb
+      BDB_POSTGRESS_PASS: ${BDB_POSTGRESS_PASS}
+  posgress:
+    image: postgres:alpine
+    restart: always
+    environment:
+      POSTGRESS_USER: binancedb
+      POSTGRESS_PASS: ${BDB_POSTGRESS_PASS}
