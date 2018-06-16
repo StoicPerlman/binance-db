@@ -25,5 +25,5 @@ setup(
     ],
     keywords='binance data cache',
     packages=['binance_db'],
-    install_requires=['sqlalchemy', 'python-binance']
+    install_requires=['sqlalchemy', 'psycopg2-binary', 'python-binance']
 )

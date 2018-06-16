@@ -4,14 +4,23 @@ services:
     image: stoicperlman/binance-db
     build:
       context: .
-    restart: always
+    restart: on-failure:3
     environment:
-      BDB_POSTGRESS_URL: postgress
-      BDB_POSTGRESS_USER: binancedb
-      BDB_POSTGRESS_PASS: ${BDB_POSTGRESS_PASS}
-  posgress:
+      PAIR: BTCUSDT
+      BDB_POSTGRES_URL: postgres
+      BDB_POSTGRES_PORT: 5432
+      BDB_POSTGRES_DB: binancedb
+      BDB_POSTGRES_USER: binancedb
+      BDB_POSTGRES_PASS: ${BDB_POSTGRES_PASS}
+  postgres:
     image: postgres:alpine
     restart: always
+    ports:
+      - 5432:5432
     environment:
-      POSTGRESS_USER: binancedb
-      POSTGRESS_PASS: ${BDB_POSTGRESS_PASS}
+      POSTGRES_DB: binancedb
+      POSTGRES_USER: binancedb
+      POSTGRES_PASSWORD: ${BDB_POSTGRES_PASS}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data

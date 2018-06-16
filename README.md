@@ -1,6 +1,6 @@
 # Binance DB
 
-A local cache for binance data, stored in Postgress
+A local cache for binance data, stored in Postgres
 
 ## Setup
 
