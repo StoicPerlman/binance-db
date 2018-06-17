@@ -1,16 +1,16 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 with open('README.md') as f:
     long_description = f.read()
 
 setup(
     name='binance-db',
-    version='0.0.1',
+    version='0.0.2',
     description='Binance data cache',
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/StoicPerlman/binance-db',
-    download_url = 'https://github.com/StoicPerlman/binance-db/archive/0.0.1.tar.gz',
+    download_url = 'https://github.com/StoicPerlman/binance-db/archive/0.0.2.tar.gz',
     author='Sam Kleiner',
     author_email='sam@skleiner.com',
     classifiers=[
@@ -23,6 +23,6 @@ setup(
         'Programming Language :: Python :: 3.6',
     ],
     keywords='binance data cache',
-    packages=['binance_db'],
+    packages=find_packages(),
     install_requires=['sqlalchemy', 'psycopg2-binary', 'python-binance']
 )
