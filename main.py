@@ -31,7 +31,7 @@ def connect_db():
     pgport = os.environ['BDB_POSTGRES_PORT']
     pguser = os.environ['BDB_POSTGRES_USER']
     pgpass = os.environ['BDB_POSTGRES_PASS']
-    conn = f'postgresql://{pguser}:{pgpass}@{pgurl}:{pgport}/{pguser}'
+    pgdb = os.environ['BDB_POSTGRES_DB']
 
     # let pg start up. first run can take longer than others
     logger.info("Waiting for Postgres...")
@@ -39,7 +39,7 @@ def connect_db():
     while True:
         time.sleep(5)
         try:
-            bdb = BinanceDB(conn)
+            bdb = BinanceDB(user=pguser, password=pgpass, url=pgurl, port=pgport, db=pgdb)
             break
         except:
             pg_try += 1
