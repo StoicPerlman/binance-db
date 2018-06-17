@@ -1,8 +1,6 @@
 from setuptools import setup
-from os import path
 
-here = path.abspath(path.dirname(__file__))
-with open(path.join(here, 'README.md'), encoding='utf-8') as f:
+with open('README.md') as f:
     long_description = f.read()
 
 setup(
@@ -12,6 +10,7 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/StoicPerlman/binance-db',
+    download_url = 'https://github.com/StoicPerlman/binance-db/archive/0.0.1.tar.gz',
     author='Sam Kleiner',
     author_email='sam@skleiner.com',
     classifiers=[
