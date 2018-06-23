@@ -2,7 +2,7 @@ from datetime import datetime
 import binance_db.util.constants.ws as ws
 import binance_db.util.constants.rest as rest
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, String, Integer, Float, DateTime
+from sqlalchemy import Column, String, Integer, Float, DateTime, Index
 
 Base = declarative_base()
 
@@ -21,6 +21,11 @@ class Candle(Base):
     trades = Column(Integer)
     tbbav = Column(Float)
     tbqav = Column(Float)
+
+    __table_args__ = (
+        Index('open_time_asc', open_time.asc(), postgresql_using='btree'),
+        Index('open_time_desc', open_time.desc(), postgresql_using='btree'),
+    )
 
     def __init__(self, pair, kline):
         self.pair = pair
